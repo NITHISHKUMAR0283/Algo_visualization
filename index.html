@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nithish Visualizer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ── TOP HEADER ── -->
+  <header class="header">
+    <div class="header-brand">
+      <span class="brand-icon">NV</span>
+      <div>
+        <h1>Nithish Visualizer</h1>
+        <span class="subtitle">Interactive Algorithm Animations</span>
+      </div>
+    </div>
+
+    <div class="controls">
+      <button id="btn-start"  class="btn btn-primary">▶ Start</button>
+      <button id="btn-pause"  class="btn btn-secondary" disabled>⏸ Pause</button>
+      <button id="btn-step"   class="btn btn-secondary">⏭ Step</button>
+      <button id="btn-reset"  class="btn btn-danger">↺ Reset</button>
+      <div class="speed-wrap">
+        <label for="speed-slider">Speed</label>
+        <input type="range" id="speed-slider" min="1" max="10" value="5" />
+        <span id="speed-label">5×</span>
+      </div>
+      <button id="btn-random" class="btn btn-info">🎲 Random</button>
+    </div>
+  </header>
+
+  <!-- ── THREE-COLUMN LAYOUT ── -->
+  <div class="app-layout">
+
+    <!-- LEFT SIDEBAR: algorithm list -->
+    <aside class="sidebar">
+      <p class="sidebar-heading">Algorithms</p>
+      <ul class="algo-list" id="algo-list">
+
+        <li class="algo-item active" data-algo="mergesort">
+          <span class="algo-tag">Sort</span>
+          <span class="algo-name">Merge Sort</span>
+          <span class="algo-complexity">O(n log n)</span>
+        </li>
+
+        <li class="algo-item" data-algo="quicksort">
+          <span class="algo-tag">Sort</span>
+          <span class="algo-name">Quick Sort</span>
+          <span class="algo-complexity">O(n log n)</span>
+        </li>
+
+        <li class="algo-item" data-algo="matrixMultiply">
+          <span class="algo-tag">Matrix</span>
+          <span class="algo-name">Matrix Multiply</span>
+          <span class="algo-complexity">O(n³)</span>
+        </li>
+
+        <li class="algo-item" data-algo="strassen">
+          <span class="algo-tag">Matrix</span>
+          <span class="algo-name">Strassen's Algorithm</span>
+          <span class="algo-complexity">O(n²·⁸¹)</span>
+        </li>
+
+        <li class="algo-item" data-algo="minmax">
+          <span class="algo-tag">Search</span>
+          <span class="algo-name">Min &amp; Max Finding</span>
+          <span class="algo-complexity">O(n)</span>
+        </li>
+
+        <li class="algo-item" data-algo="largestSubarray">
+          <span class="algo-tag">Array</span>
+          <span class="algo-name">Largest Subarray Sum</span>
+          <span class="algo-complexity">O(n log n)</span>
+        </li>
+
+        <li class="algo-item" data-algo="closestPair">
+          <span class="algo-tag">Geometry</span>
+          <span class="algo-name">Closest Pair of Points</span>
+          <span class="algo-complexity">O(n log n)</span>
+        </li>
+
+        <li class="algo-item" data-algo="convexHull">
+          <span class="algo-tag">Geometry</span>
+          <span class="algo-name">Convex Hull</span>
+          <span class="algo-complexity">O(n log n)</span>
+        </li>
+
+      </ul>
+    </aside>
+
+    <!-- CENTER: visualization + input -->
+    <main class="center">
+      <div class="viz-box">
+        <div class="viz-header">
+          <h2 id="algo-title">Merge Sort</h2>
+          <div class="step-meta">
+            <span id="step-counter">Step: 0 / 0</span>
+            <span id="phase-badge" class="badge phase-divide">Divide</span>
+          </div>
+        </div>
+
+        <canvas id="viz-canvas"></canvas>
+
+        <div id="step-desc" class="step-desc">
+          Press <strong>Start</strong> to begin the animation.
+        </div>
+      </div>
+
+      <div class="input-bar">
+        <label for="input-data">Input:</label>
+        <input type="text" id="input-data"
+               placeholder="Comma-separated values…"
+               value="64, 25, 12, 22, 11, 90, 38, 72" />
+        <button id="btn-apply" class="btn btn-secondary">Apply</button>
+      </div>
+    </main>
+
+    <!-- RIGHT PANEL: info & complexity -->
+    <aside class="info-panel">
+
+      <section class="info-section">
+        <h3 id="info-name">Merge Sort</h3>
+        <p  id="info-desc"></p>
+      </section>
+
+      <section class="info-section">
+        <h4 class="phase-label divide-label">📐 Divide</h4>
+        <p id="info-divide"></p>
+      </section>
+
+      <section class="info-section">
+        <h4 class="phase-label conquer-label">⚙️ Conquer</h4>
+        <p id="info-conquer"></p>
+      </section>
+
+      <section class="info-section">
+        <h4 class="phase-label combine-label">🔗 Combine</h4>
+        <p id="info-combine"></p>
+      </section>
+
+      <section class="info-section complexity-block">
+        <h4>📊 Time Complexity</h4>
+        <div class="recurrence-box">
+          <span id="info-recurrence"></span>
+        </div>
+        <div id="info-complexity-steps" class="complexity-steps"></div>
+        <div class="final-box">
+          <strong>Result: </strong>
+          <span id="info-final-complexity"></span>
+        </div>
+        <p id="info-complexity-note" class="complexity-note"></p>
+      </section>
+
+    </aside>
+  </div>
+
+  <!-- ── SCRIPTS (order matters) ── -->
+  <script src="visualization/canvasUtils.js"></script>
+  <script src="visualization/animation.js"></script>
+  <script src="algorithms/mergesort.js"></script>
+  <script src="algorithms/quicksort.js"></script>
+  <script src="algorithms/matrixMultiply.js"></script>
+  <script src="algorithms/strassen.js"></script>
+  <script src="algorithms/minmax.js"></script>
+  <script src="algorithms/largestSubarray.js"></script>
+  <script src="algorithms/closestPair.js"></script>
+  <script src="algorithms/convexHull.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>
