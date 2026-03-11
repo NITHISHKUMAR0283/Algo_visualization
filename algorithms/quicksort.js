@@ -1,17 +1,4 @@
-/**
- * algorithms/quicksort.js
- *
- * Divide and Conquer – Quick Sort (Lomuto partition scheme)
- *
- * Visual strategy
- * ---------------
- *  • Array bars, coloured by role in the current partition step.
- *  • Pivot bar is red.
- *  • Elements known to be ≤ pivot are cyan; > pivot are purple.
- *  • The two items being swapped flash orange momentarily (swap step).
- *  • The partition boundary (i pointer) is shown as a small arrow.
- *  • Fully sorted bars turn green.
- */
+
 
 'use strict';
 
@@ -20,8 +7,8 @@ window.AlgoQuickSort = (() => {
   const C = {
     bar:     '#4a5568',
     pivot:   '#ff5555',
-    small:   '#8be9fd',   // ≤ pivot
-    large:   '#bd93f9',   // > pivot (scanned but not swapped into left)
+    small:   '#8be9fd',
+    large:   '#bd93f9',
     swap:    '#ffb86c',
     sorted:  '#50fa7b',
     muted:   '#6272a4',
@@ -29,7 +16,7 @@ window.AlgoQuickSort = (() => {
     bg:      '#1a1d27',
   };
 
-  /* ── step generation ──────────────────────────────────────────── */
+
   function generateSteps(inputArray) {
     const arr    = [...inputArray];
     const steps  = [];
@@ -79,7 +66,7 @@ window.AlgoQuickSort = (() => {
         }
       }
 
-      // Place pivot into final position
+
       const finalPivot = i + 1;
       if (finalPivot !== hi) {
         push(
@@ -125,7 +112,7 @@ window.AlgoQuickSort = (() => {
     return steps;
   }
 
-  /* ── render ───────────────────────────────────────────────────── */
+
   function render(canvas, ctx, step) {
     const W = canvas.width, H = canvas.height;
     CU.clear(ctx, canvas, C.bg);
@@ -148,14 +135,14 @@ window.AlgoQuickSort = (() => {
     const barW      = barAreaW / n;
     const maxVal    = Math.max(...array, 1);
 
-    /* partition range background */
+
     if (partRange) {
       const rx = PAD.l + partRange.lo * barW;
       const rw = (partRange.hi - partRange.lo + 1) * barW;
       CU.fillRect(ctx, rx, PAD.t, rw, barAreaH, 'rgba(79,142,247,0.07)');
     }
 
-    /* bars */
+
     for (let i = 0; i < n; i++) {
       const bh  = Math.max(2, (array[i] / maxVal) * barAreaH);
       const bx  = PAD.l + i * barW;
@@ -195,7 +182,7 @@ window.AlgoQuickSort = (() => {
       }
     }
 
-    /* i-pointer (partition boundary) */
+
     if (iPtr !== undefined && iPtr >= 0) {
       const ax = PAD.l + iPtr * barW + barW / 2;
       CU.text(ctx, 'i', ax, H - PAD.b + 30, {
@@ -203,7 +190,7 @@ window.AlgoQuickSort = (() => {
       });
     }
 
-    /* legend */
+
     CU.legend(ctx, [
       { color: C.pivot,  label: 'Pivot' },
       { color: C.small,  label: '≤ Pivot' },
@@ -213,7 +200,7 @@ window.AlgoQuickSort = (() => {
     ], PAD.l, 6);
   }
 
-  /* ── getInfo ──────────────────────────────────────────────────── */
+
   function getInfo() {
     return {
       name: 'Quick Sort',

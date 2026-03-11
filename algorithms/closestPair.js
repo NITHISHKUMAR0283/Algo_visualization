@@ -1,25 +1,4 @@
-/**
- * algorithms/closestPair.js
- *
- * Divide and Conquer – Closest Pair of Points
- *
- * Algorithm
- * ---------
- *  1. Sort points by x-coordinate.
- *  2. Divide at the median x.
- *  3. Recurse on left and right halves → δL, δR.
- *  4. δ = min(δL, δR).
- *  5. Check the strip of width 2δ around the median line for a closer pair.
- *  6. Return the overall minimum distance pair.
- *
- * Visual strategy
- * ---------------
- *  • Scatter-plot in a 2-D canvas with margin.
- *  • Divide lines drawn as vertical dashed red/pink lines.
- *  • Left half dots cyan, right half purple.
- *  • Strip region shaded.
- *  • Current closest pair connected with a bold green line.
- */
+
 
 'use strict';
 
@@ -40,14 +19,14 @@ window.AlgoClosestPair = (() => {
 
   const DOT_R = 5;
 
-  /* ── distance ────────────────────────────────────────────────── */
+
   function dist(p, q) {
     return Math.sqrt((p.x - q.x) ** 2 + (p.y - q.y) ** 2);
   }
 
-  /* ── step generation ─────────────────────────────────────────── */
+
   function generateSteps(pointsInput) {
-    // Sort by x once
+
     const pts   = [...pointsInput].sort((a, b) => a.x - b.x);
     const steps = [];
     let   globalBest = { pair: [pts[0], pts[1]], d: dist(pts[0], pts[1]) };
@@ -110,7 +89,7 @@ window.AlgoClosestPair = (() => {
       push(`Min of left (${resL.d.toFixed(2)}) and right (${resR.d.toFixed(2)}) = δ = <b>${d.toFixed(2)}</b>`,
            'combine', { divX, stripWidth: d });
 
-      // strip
+
       const strip = sub.filter(p => Math.abs(p.x - divX) < d);
       if (strip.length >= 2) {
         push(`Strip check: ${strip.length} points within δ=${d.toFixed(2)} of dividing line`,
@@ -135,7 +114,7 @@ window.AlgoClosestPair = (() => {
 
   function lbl(p) { return `(${p.x.toFixed(1)},${p.y.toFixed(1)})`; }
 
-  /* ── render ───────────────────────────────────────────────────── */
+
   function render(canvas, ctx, step) {
     const W = canvas.width, H = canvas.height;
     CU.clear(ctx, canvas, C.bg);
@@ -152,7 +131,7 @@ window.AlgoClosestPair = (() => {
 
     if (!points.length) return;
 
-    /* map data coords → canvas coords */
+
     const PAD  = 40;
     const xMin = Math.min(...points.map(p => p.x));
     const xMax = Math.max(...points.map(p => p.x));
@@ -164,7 +143,7 @@ window.AlgoClosestPair = (() => {
     function cx(x) { return PAD + ((x - xMin) / xRange) * (W - PAD * 2); }
     function cy(y) { return H - PAD - ((y - yMin) / yRange) * (H - PAD * 2); }
 
-    /* grid */
+
     for (let i = 0; i <= 5; i++) {
       const gx = Math.round(PAD + (i / 5) * (W - PAD * 2));
       const gy = Math.round(PAD + (i / 5) * (H - PAD * 2));
@@ -172,38 +151,38 @@ window.AlgoClosestPair = (() => {
       CU.line(ctx, PAD, gy, W - PAD, gy, C.grid, 1);
     }
 
-    /* divide line */
+
     if (divX !== undefined) {
       const lx = cx(divX);
       CU.line(ctx, lx, PAD, lx, H - PAD, C.divLine, 2, [6, 4]);
     }
 
-    /* strip shading */
+
     if (divX !== undefined && stripWidth !== undefined) {
       const lx1 = cx(divX - stripWidth);
       const lx2 = cx(divX + stripWidth);
       CU.fillRect(ctx, lx1, PAD, lx2 - lx1, H - PAD * 2, 'rgba(255,184,108,0.12)');
     }
 
-    /* global best line */
+
     if (globalBest && globalBest.pair) {
       const [p1, p2] = globalBest.pair;
       CU.line(ctx, cx(p1.x), cy(p1.y), cx(p2.x), cy(p2.y), C.closest, 2, [4, 3]);
     }
 
-    /* closest pair line */
+
     if (closestPair) {
       const [p1, p2] = closestPair;
       CU.line(ctx, cx(p1.x), cy(p1.y), cx(p2.x), cy(p2.y), C.closest, 3);
     }
 
-    /* highlighted pair line */
+
     if (highlighted.length === 2) {
       const [p1, p2] = highlighted;
       CU.line(ctx, cx(p1.x), cy(p1.y), cx(p2.x), cy(p2.y), C.strip, 2);
     }
 
-    /* draw all points */
+
     const hlSet   = new Set(highlighted.map(p => `${p.x},${p.y}`));
     const leftSet_  = new Set((leftSet  || []).map(p => `${p.x},${p.y}`));
     const rightSet_ = new Set((rightSet || []).map(p => `${p.x},${p.y}`));
@@ -226,7 +205,7 @@ window.AlgoClosestPair = (() => {
       }
     }
 
-    /* labels for closest pair */
+
     if (closestPair) {
       closestPair.forEach(p => {
         CU.text(ctx, lbl(p), cx(p.x), cy(p.y) - 12, {
@@ -235,14 +214,14 @@ window.AlgoClosestPair = (() => {
       });
     }
 
-    /* distance label */
+
     if (globalBest && globalBest.pair && globalBest.d !== Infinity) {
       CU.text(ctx, `Current best δ = ${globalBest.d.toFixed(3)}`, W / 2, H - 12, {
         font: 'bold 11px monospace', color: C.closest, align: 'center',
       });
     }
 
-    /* legend */
+
     CU.legend(ctx, [
       { color: C.left,    label: 'Left Half' },
       { color: C.right,   label: 'Right Half' },
@@ -251,7 +230,7 @@ window.AlgoClosestPair = (() => {
     ], PAD, 8);
   }
 
-  /* ── getInfo ──────────────────────────────────────────────────── */
+
   function getInfo() {
     return {
       name: 'Closest Pair of Points',

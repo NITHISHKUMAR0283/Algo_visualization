@@ -1,25 +1,4 @@
-/**
- * algorithms/largestSubarray.js
- *
- * Divide and Conquer – Maximum Subarray Sum (Kadane's D&C variant)
- *
- * Algorithm
- * ---------
- *  Divide the array at mid.  The maximum subarray either lies:
- *    (a) entirely in the left half   [lo..mid]
- *    (b) entirely in the right half  [mid+1..hi]
- *    (c) crosses the midpoint        [i..mid..j]
- *
- *  Crossing sum: expand left from mid, then right from mid+1, take the
- *  best sum on each side and add them.
- *
- * Visual strategy
- * ---------------
- *  • Bars drawn above the baseline for positives, below for negatives.
- *  • Left half → cyan, right half → purple, crossing subarray → orange.
- *  • Running best subarray → green outline.
- *  • A thin mid-line guides the eye.
- */
+
 
 'use strict';
 
@@ -38,7 +17,7 @@ window.AlgoLargestSubarray = (() => {
     bg:      '#1a1d27',
   };
 
-  /* ── step generation ─────────────────────────────────────────── */
+
   function generateSteps(inputArray) {
     const arr    = [...inputArray];
     const steps  = [];
@@ -123,7 +102,7 @@ window.AlgoLargestSubarray = (() => {
     return steps;
   }
 
-  /* ── render ───────────────────────────────────────────────────── */
+
   function render(canvas, ctx, step) {
     const W = canvas.width, H = canvas.height;
     CU.clear(ctx, canvas, C.bg);
@@ -143,11 +122,11 @@ window.AlgoLargestSubarray = (() => {
     const barAreaW  = W - PAD.l - PAD.r;
     const barAreaH  = H - PAD.t - PAD.b;
     const barW      = barAreaW / n;
-    const midLine_y = PAD.t + barAreaH / 2;     // zero line
+    const midLine_y = PAD.t + barAreaH / 2;
     const absMax    = Math.max(...array.map(Math.abs), 1);
     const half_h    = barAreaH / 2 - 2;
 
-    /* background shading */
+
     function shadeBand(range, color) {
       if (!range) return;
       const rx = PAD.l + range.lo * barW;
@@ -160,16 +139,16 @@ window.AlgoLargestSubarray = (() => {
     if (crossRange) shadeBand(crossRange, 'rgba(255,184,108,0.12)');
     if (bestRange)  shadeBand(bestRange,  'rgba(80,250,123,0.10)');
 
-    /* zero baseline */
+
     CU.line(ctx, PAD.l, midLine_y, W - PAD.r, midLine_y, '#44475a', 1);
 
-    /* mid-point line */
+
     if (midLine !== undefined) {
       const mx = PAD.l + (midLine + 1) * barW;
       CU.line(ctx, mx, PAD.t, mx, PAD.t + barAreaH, C.mid, 2, [6, 4]);
     }
 
-    /* bars */
+
     for (let i = 0; i < n; i++) {
       const val  = array[i];
       const bh   = Math.max(2, (Math.abs(val) / absMax) * half_h);
@@ -203,7 +182,7 @@ window.AlgoLargestSubarray = (() => {
       }
     }
 
-    /* best sum banner */
+
     if (step.bestSoFar && step.bestSoFar.sum !== -Infinity) {
       const { lo, hi, sum } = step.bestSoFar;
       CU.text(ctx, `Best so far: [${lo}..${hi}] = ${sum}`, W / 2, H - PAD.b + 32, {
@@ -211,7 +190,7 @@ window.AlgoLargestSubarray = (() => {
       });
     }
 
-    /* legend */
+
     CU.legend(ctx, [
       { color: C.left,  label: 'Left Half' },
       { color: C.right, label: 'Right Half' },
@@ -220,7 +199,7 @@ window.AlgoLargestSubarray = (() => {
     ], PAD.l, 6);
   }
 
-  /* ── getInfo ──────────────────────────────────────────────────── */
+
   function getInfo() {
     return {
       name: 'Largest Subarray Sum (D&C)',

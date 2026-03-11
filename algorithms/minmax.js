@@ -1,16 +1,4 @@
-/**
- * algorithms/minmax.js
- *
- * Divide and Conquer – Finding Min & Max
- *
- * Visual strategy
- * ---------------
- *  • Array rendered as bars.
- *  • Active segment highlighted in blue.
- *  • Current min bar outlined in red; current max bar outlined in green.
- *  • Comparing element flashes orange.
- *  • Information banner shows running min/max.
- */
+
 
 'use strict';
 
@@ -27,7 +15,7 @@ window.AlgoMinMax = (() => {
     bg:      '#1a1d27',
   };
 
-  /* ── step generation ─────────────────────────────────────────── */
+
   function generateSteps(inputArray) {
     const arr    = [...inputArray];
     const steps  = [];
@@ -99,7 +87,7 @@ window.AlgoMinMax = (() => {
     return steps;
   }
 
-  /* ── render ───────────────────────────────────────────────────── */
+
   function render(canvas, ctx, step) {
     const W = canvas.width, H = canvas.height;
     CU.clear(ctx, canvas, C.bg);
@@ -122,20 +110,20 @@ window.AlgoMinMax = (() => {
     const barW     = barAreaW / n;
     const maxVal   = Math.max(...array, 1);
 
-    /* active range shading */
+
     if (activeRange) {
       const rx = PAD.l + activeRange.lo * barW;
       const rw = (activeRange.hi - activeRange.lo + 1) * barW;
       CU.fillRect(ctx, rx, PAD.t, rw, barAreaH, 'rgba(79,142,247,0.08)');
     }
 
-    /* mid divider */
+
     if (midIndex !== undefined) {
       const mx = PAD.l + (midIndex + 1) * barW;
       CU.line(ctx, mx, PAD.t, mx, H - PAD.b, '#ff79c6', 2, [5, 4]);
     }
 
-    /* bars */
+
     for (let i = 0; i < n; i++) {
       const bh  = Math.max(2, (array[i] / maxVal) * barAreaH);
       const bx  = PAD.l + i * barW;
@@ -148,7 +136,7 @@ window.AlgoMinMax = (() => {
 
       CU.fillRect(ctx, bx + gap, by, barW - gap * 2, bh, color);
 
-      // min/max outline
+
       if (i === minIdx) {
         CU.strokeRect(ctx, bx + gap, by, barW - gap * 2, bh, C.min, 2);
         CU.text(ctx, 'MIN', bx + barW / 2, by - 9, {
@@ -173,7 +161,7 @@ window.AlgoMinMax = (() => {
       }
     }
 
-    /* min / max status banner */
+
     const { min, max } = step;
     const bannerY = H - PAD.b + 30;
     if (min !== null) {
@@ -187,7 +175,7 @@ window.AlgoMinMax = (() => {
       });
     }
 
-    /* legend */
+
     CU.legend(ctx, [
       { color: C.active,  label: 'Active Range' },
       { color: C.compare, label: 'Comparing' },
@@ -196,7 +184,7 @@ window.AlgoMinMax = (() => {
     ], PAD.l, 6);
   }
 
-  /* ── getInfo ──────────────────────────────────────────────────── */
+
   function getInfo() {
     return {
       name: 'Min & Max Finding (D&C)',

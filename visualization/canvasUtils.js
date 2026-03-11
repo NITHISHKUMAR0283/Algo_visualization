@@ -1,23 +1,17 @@
-/**
- * visualization/canvasUtils.js
- *
- * Low-level drawing helpers used by every algorithm's render function.
- * All functions are pure – no state stored here.
- */
+
 
 'use strict';
 
-/* eslint-disable no-unused-vars */
 
 const CU = {
 
-  /* ── Canvas ──────────────────────────────────────────────────────── */
+
   clear(ctx, canvas, bgColor = '#1a1d27') {
     ctx.fillStyle = bgColor;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
   },
 
-  /* ── Rectangles ──────────────────────────────────────────────────── */
+
   fillRect(ctx, x, y, w, h, color) {
     ctx.fillStyle = color;
     ctx.fillRect(x, y, w, h);
@@ -34,7 +28,7 @@ const CU = {
     if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = lw; ctx.strokeRect(x, y, w, h); }
   },
 
-  /* ── Text ────────────────────────────────────────────────────────── */
+
   text(ctx, str, x, y, {
     font      = '12px monospace',
     color     = '#f8f8f2',
@@ -50,7 +44,7 @@ const CU = {
     else                        ctx.fillText(str, x, y);
   },
 
-  /* ── Lines ───────────────────────────────────────────────────────── */
+
   line(ctx, x1, y1, x2, y2, color = '#6272a4', lw = 1, dash = []) {
     ctx.strokeStyle = color;
     ctx.lineWidth   = lw;
@@ -62,7 +56,7 @@ const CU = {
     ctx.setLineDash([]);
   },
 
-  /* ── Circles / dots ──────────────────────────────────────────────── */
+
   circle(ctx, cx, cy, r, fill = null, stroke = null, lw = 1) {
     ctx.beginPath();
     ctx.arc(cx, cy, r, 0, Math.PI * 2);
@@ -74,7 +68,7 @@ const CU = {
     this.circle(ctx, cx, cy, r, color);
   },
 
-  /* ── Arrows ──────────────────────────────────────────────────────── */
+
   arrow(ctx, x1, y1, x2, y2, color = '#4f8ef7', lw = 2) {
     const angle   = Math.atan2(y2 - y1, x2 - x1);
     const headLen = 9;
@@ -97,7 +91,7 @@ const CU = {
     ctx.fill();
   },
 
-  /* ── Polygon ─────────────────────────────────────────────────────── */
+
   polygon(ctx, pts, fill = null, stroke = null, lw = 2) {
     if (!pts || pts.length < 2) return;
     ctx.beginPath();
@@ -118,7 +112,7 @@ const CU = {
     ctx.stroke();
   },
 
-  /* ── Rounded rectangle ───────────────────────────────────────────── */
+
   roundRect(ctx, x, y, w, h, r, fill = null, stroke = null, lw = 1) {
     ctx.beginPath();
     ctx.moveTo(x + r, y);
@@ -135,7 +129,7 @@ const CU = {
     if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = lw; ctx.stroke(); }
   },
 
-  /* ── Legend ──────────────────────────────────────────────────────── */
+
   legend(ctx, items, x, y) {
     const sw = 12, sh = 12, gap = 4, spacing = 110;
     items.forEach((item, i) => {

@@ -1,27 +1,4 @@
-/**
- * algorithms/convexHull.js
- *
- * Divide and Conquer – Convex Hull (Andrew's Monotone Chain / D&C merge)
- *
- * Algorithm (D&C approach)
- * ------------------------
- *  1. Sort points by x (then y).
- *  2. Divide points into left half and right half.
- *  3. Recursively compute hull of each half.
- *  4. Merge the two hulls by finding the upper and lower tangent lines.
- *
- * For the animation, we also show the incremental construction of:
- *   • Upper hull (left to right, turn right / clockwise)
- *   • Lower hull (right to left)
- *
- * Visual strategy
- * ---------------
- *  • 2-D scatter-plot.
- *  • Sorted order shown step-by-step.
- *  • Left-half hull in cyan, right-half hull in purple.
- *  • Merged hull in green.
- *  • Tangent lines in orange.
- */
+
 
 'use strict';
 
@@ -41,12 +18,12 @@ window.AlgoConvexHull = (() => {
   };
   const DOT_R = 5;
 
-  /* ── cross product ───────────────────────────────────────────── */
+
   function cross(O, A, B) {
     return (A.x - O.x) * (B.y - O.y) - (A.y - O.y) * (B.x - O.x);
   }
 
-  /* ── Monotone-chain convex hull ──────────────────────────────── */
+
   function monoHull(pts) {
     const n = pts.length;
     if (n < 2) return pts.slice();
@@ -68,7 +45,7 @@ window.AlgoConvexHull = (() => {
     return lower.concat(upper);
   }
 
-  /* ── step generation ─────────────────────────────────────────── */
+
   function generateSteps(inputPoints) {
     const pts   = [...inputPoints].sort((a, b) => a.x !== b.x ? a.x - b.x : a.y - b.y);
     const steps = [];
@@ -79,7 +56,7 @@ window.AlgoConvexHull = (() => {
 
     push(`${pts.length} points sorted by x-coordinate. Computing Convex Hull using Divide and Conquer.`, 'divide');
 
-    /* Walk through building the upper hull */
+
     push('Building upper hull – process points left to right, keeping right turns only.', 'divide',
          { leftSet: pts, rightSet: [] });
 
@@ -121,9 +98,9 @@ window.AlgoConvexHull = (() => {
              addedPt: p, phase_label: 'upper' });
     }
 
-    // Merge
+
     const fullHull = [...lower, ...upper.slice(0, -1)];
-    fullHull.pop(); // last from upper duplicates first from lower
+    fullHull.pop();
 
     push('Combine upper and lower hull → Convex Hull complete!', 'done',
          { finalHull: fullHull });
@@ -131,7 +108,7 @@ window.AlgoConvexHull = (() => {
     return steps;
   }
 
-  /* ── canvas mapping helpers ─────────────────────────────────── */
+
   function makeMapper(points, W, H, PAD) {
     const xMin = Math.min(...points.map(p => p.x));
     const xMax = Math.max(...points.map(p => p.x));
@@ -145,7 +122,7 @@ window.AlgoConvexHull = (() => {
     };
   }
 
-  /* ── render ──────────────────────────────────────────────────── */
+
   function render(canvas, ctx, step) {
     const W = canvas.width, H = canvas.height;
     CU.clear(ctx, canvas, C.bg);
@@ -162,7 +139,7 @@ window.AlgoConvexHull = (() => {
     const PAD = 44;
     const { cx, cy } = makeMapper(points, W, H, PAD);
 
-    /* grid */
+
     for (let i = 0; i <= 4; i++) {
       const gx = Math.round(PAD + (i / 4) * (W - PAD * 2));
       const gy = Math.round(PAD + (i / 4) * (H - PAD * 2));
@@ -170,13 +147,13 @@ window.AlgoConvexHull = (() => {
       CU.line(ctx, PAD, gy, W - PAD, gy, C.grid, 1);
     }
 
-    /* draw final hull polygon */
+
     if (finalHull && finalHull.length >= 3) {
       const poly = finalHull.map(p => ({ x: cx(p.x), y: cy(p.y) }));
       CU.polygon(ctx, poly, 'rgba(80,250,123,0.12)', C.hull, 2.5);
     }
 
-    /* draw in-progress hull polyline */
+
     if (currentHull && currentHull.length >= 2) {
       const hullColor = phase_label === 'lower' ? C.left : C.right;
       const poly = currentHull.map(p => ({ x: cx(p.x), y: cy(p.y) }));
@@ -187,7 +164,7 @@ window.AlgoConvexHull = (() => {
       CU.polyline(ctx, poly, C.left, 2);
     }
 
-    /* draw all points */
+
     const addedKey   = addedPt   ? `${addedPt.x},${addedPt.y}`   : null;
     const removedKey = removedPt ? `${removedPt.x},${removedPt.y}` : null;
     const hullSet    = new Set((currentHull || []).concat(currentLower || [])
@@ -215,7 +192,7 @@ window.AlgoConvexHull = (() => {
       }
     }
 
-    /* Hull annotation labels */
+
     if (!finalHull) {
       const label = phase_label === 'lower' ? 'Lower Hull' : 'Upper Hull';
       const col   = phase_label === 'lower' ? C.left : C.right;
@@ -228,7 +205,7 @@ window.AlgoConvexHull = (() => {
       });
     }
 
-    /* legend */
+
     CU.legend(ctx, [
       { color: C.left,    label: 'Lower Hull' },
       { color: C.right,   label: 'Upper Hull' },
@@ -238,7 +215,7 @@ window.AlgoConvexHull = (() => {
     ], PAD, 8);
   }
 
-  /* ── getInfo ──────────────────────────────────────────────────── */
+
   function getInfo() {
     return {
       name: 'Convex Hull (D&C)',

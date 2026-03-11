@@ -1,6 +1,4 @@
-/* ============================================================
-   Global Reset & CSS Variables
-   ============================================================ */
+
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -36,9 +34,7 @@ body {
   overflow: hidden;
 }
 
-/* ============================================================
-   Header
-   ============================================================ */
+
 .header {
   height: var(--header-h);
   background: var(--bg1);
@@ -84,9 +80,7 @@ body {
   flex-wrap: nowrap;
 }
 
-/* ============================================================
-   Buttons
-   ============================================================ */
+
 .btn {
   padding: 5px 13px;
   border: none;
@@ -121,18 +115,14 @@ body {
 .speed-wrap input[type="range"] { width: 70px; accent-color: var(--blue); }
 #speed-label { font-size: 0.78rem; color: var(--cyan); min-width: 22px; }
 
-/* ============================================================
-   Three-column App Layout
-   ============================================================ */
+
 .app-layout {
   display: flex;
   flex: 1;
   overflow: hidden;
 }
 
-/* ============================================================
-   Left Sidebar
-   ============================================================ */
+
 .sidebar {
   width: var(--sidebar-w);
   background: var(--bg1);
@@ -188,9 +178,7 @@ body {
   margin-top: 3px;
 }
 
-/* ============================================================
-   Center: Visualization + input
-   ============================================================ */
+
 .center {
   flex: 1;
   display: flex;
@@ -234,7 +222,7 @@ body {
   color: var(--muted);
 }
 
-/* Phase badges */
+
 .badge {
   padding: 2px 10px;
   border-radius: 20px;
@@ -265,7 +253,7 @@ body {
   flex-shrink: 0;
 }
 
-/* Input bar */
+
 .input-bar {
   display: flex;
   align-items: center;
@@ -293,9 +281,7 @@ body {
 }
 .input-bar input[type="text"]:focus { border-color: var(--blue); }
 
-/* ============================================================
-   Right Info Panel
-   ============================================================ */
+
 .info-panel {
   width: var(--info-w);
   background: var(--bg1);
@@ -331,7 +317,7 @@ body {
   line-height: 1.6;
 }
 
-/* Complexity block */
+
 .complexity-block { background: rgba(79,142,247,0.04); }
 .complexity-block h4 { color: var(--yellow); font-size: 0.82rem; margin-bottom: 8px; }
 
@@ -371,17 +357,13 @@ body {
   margin-top: 4px;
 }
 
-/* ============================================================
-   Scrollbars
-   ============================================================ */
+
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: var(--bg0); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
 
-/* ============================================================
-   Responsive
-   ============================================================ */
+
 @media (max-width: 1100px) {
   :root { --info-w: 240px; --sidebar-w: 185px; }
 }

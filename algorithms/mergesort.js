@@ -1,28 +1,10 @@
-/**
- * algorithms/mergesort.js
- *
- * Divide and Conquer – Merge Sort
- *
- * Visual strategy
- * ---------------
- *  • Top 68 % of canvas  : the full array rendered as vertical bars.
- *  • Bottom 32 %         : during merge steps, the two auxiliary halves
- *    (left in cyan, right in purple) are shown with comparison pointers.
- *  • A dashed vertical line marks the midpoint during divide steps.
- *  • Legend strip at the top describes colour coding.
- *
- * Step schema
- * -----------
- *  { phase, description, array, highlights,
- *    activeRange, midIndex, leftRange, rightRange,
- *    auxLeft, auxRight, leftPtr, rightPtr, mergePtr }
- */
+
 
 'use strict';
 
 window.AlgoMergeSort = (() => {
 
-  /* ── palette ─────────────────────────────────────────────────── */
+
   const C = {
     bar:      '#4a5568',
     left:     '#8be9fd',
@@ -38,7 +20,7 @@ window.AlgoMergeSort = (() => {
     divLine:  '#ff79c6',
   };
 
-  /* ── step generation ─────────────────────────────────────────── */
+
   function generateSteps(inputArray) {
     const arr   = [...inputArray];
     const steps = [];
@@ -54,7 +36,7 @@ window.AlgoMergeSort = (() => {
 
       while (i < leftCopy.length && j < rightCopy.length) {
         const hl = {};
-        // show elements from original source positions as comparing
+
         hl[lo + i]       = 'compare';
         hl[mid + 1 + j]  = 'compare';
         push(
@@ -103,7 +85,7 @@ window.AlgoMergeSort = (() => {
     return steps;
   }
 
-  /* ── render ──────────────────────────────────────────────────── */
+
   function render(canvas, ctx, step) {
     const W = canvas.width, H = canvas.height;
     CU.clear(ctx, canvas, C.bg);
@@ -128,14 +110,14 @@ window.AlgoMergeSort = (() => {
     const barW     = barAreaW / n;
     const maxVal   = Math.max(...array, 1);
 
-    /* active range bg */
+
     if (activeRange) {
       const rx = PAD.l + activeRange.lo * barW;
       const rw = (activeRange.hi - activeRange.lo + 1) * barW;
       CU.fillRect(ctx, rx, PAD.t, rw, barAreaH, 'rgba(79,142,247,0.07)');
     }
 
-    /* left / right shading during merge */
+
     if (leftRange) {
       const rx = PAD.l + leftRange.lo * barW;
       const rw = (leftRange.hi - leftRange.lo + 1) * barW;
@@ -147,13 +129,13 @@ window.AlgoMergeSort = (() => {
       CU.fillRect(ctx, rx, PAD.t, rw, barAreaH, 'rgba(189,147,249,0.08)');
     }
 
-    /* mid-point divider */
+
     if (midIndex !== undefined) {
       const mx = PAD.l + (midIndex + 1) * barW;
       CU.line(ctx, mx, PAD.t, mx, mainH - PAD.b, C.divLine, 2, [6, 4]);
     }
 
-    /* draw bars */
+
     for (let i = 0; i < n; i++) {
       const bh = Math.max(2, (array[i] / maxVal) * barAreaH);
       const bx = PAD.l + i * barW;
@@ -173,7 +155,7 @@ window.AlgoMergeSort = (() => {
         CU.strokeRect(ctx, bx + gap, by, barW - gap * 2, bh, C.compare, 2);
       }
 
-      /* value label */
+
       if (n <= 20) {
         const fs = Math.max(8, Math.min(12, barW * 0.55));
         CU.text(ctx, array[i], bx + barW / 2, mainH - PAD.b + 14, {
@@ -185,22 +167,22 @@ window.AlgoMergeSort = (() => {
       }
     }
 
-    /* ── auxiliary arrays (merge steps) ── */
+
     if (hasAux) {
       const auxY     = mainH + 6;
       const auxH     = H - auxY - 10;
       const halfW    = (W - PAD.l - PAD.r - 16) / 2;
       const lblY     = auxY + 12;
 
-      // Left copy
+
       renderAuxArray(ctx, auxLeft,  PAD.l,            auxY + 18, halfW, auxH - 18,
                      C.left, leftPtr, 'Left [ ]');
-      // Right copy
+
       renderAuxArray(ctx, auxRight, PAD.l + halfW + 16, auxY + 18, halfW, auxH - 18,
                      C.right, rightPtr, 'Right [ ]');
     }
 
-    /* legend */
+
     CU.legend(ctx, [
       { color: C.left,    label: 'Left Half' },
       { color: C.right,   label: 'Right Half' },
@@ -233,7 +215,7 @@ window.AlgoMergeSort = (() => {
         });
       }
     }
-    // pointer arrow
+
     if (ptr !== undefined && ptr < n) {
       const ax = x + ptr * barW + barW / 2;
       CU.text(ctx, '▲', ax, y + H, {
@@ -242,7 +224,7 @@ window.AlgoMergeSort = (() => {
     }
   }
 
-  /* ── getInfo ─────────────────────────────────────────────────── */
+
   function getInfo() {
     return {
       name: 'Merge Sort',
@@ -271,7 +253,7 @@ window.AlgoMergeSort = (() => {
     };
   }
 
-  /* ── input helpers ───────────────────────────────────────────── */
+
   function parseInput(str) {
     const nums = str.split(',').map(s => parseInt(s.trim(), 10)).filter(n => !isNaN(n));
     if (!nums.length) throw new Error('empty');
@@ -289,7 +271,7 @@ window.AlgoMergeSort = (() => {
 
   function inputToString(arr) { return arr.join(', '); }
 
-  /* ── public API ──────────────────────────────────────────────── */
+
   return { getInfo, parseInput, getDefaultInput, getRandomInput, inputToString, generateSteps, render };
 
 })();

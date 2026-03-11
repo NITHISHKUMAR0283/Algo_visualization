@@ -1,24 +1,10 @@
-/**
- * algorithms/strassen.js
- *
- * Strassen's Matrix Multiplication (2×2 matrices)
- *
- * Visual strategy
- * ---------------
- *  • Display matrices A, B (top row) and the 7 auxiliary matrices
- *    M1…M7 (bottom row), then reconstruct C from M-values.
- *  • Each step highlights which elements of A and B are used to
- *    compute the current Mᵢ, and shows its value.
- *  • Final step shows C computed from the Mᵢ values.
- *
- * Input: 2×2 matrices, auto-generated.
- */
+
 
 'use strict';
 
 window.AlgoStrassen = (() => {
 
-  /* ── helpers ─────────────────────────────────────────────────── */
+
   function randMat() {
     return [[rnd(), rnd()], [rnd(), rnd()]];
   }
@@ -39,10 +25,7 @@ window.AlgoStrassen = (() => {
     ];
   }
 
-  /* Strassen M-factors for 2×2 matrices:
-     a=A[0][0], b=A[0][1], c=A[1][0], d=A[1][1]
-     e=B[0][0], f=B[0][1], g=B[1][0], h=B[1][1]
-  */
+
   const M_DEFS = [
     { name: 'M₁', formula: '(a+d)·(e+h)',   desc: 'A₁₁+A₂₂  times  B₁₁+B₂₂' },
     { name: 'M₂', formula: '(c+d)·e',        desc: 'A₂₁+A₂₂  times  B₁₁' },
@@ -60,7 +43,7 @@ window.AlgoStrassen = (() => {
     { name: 'C₂₂', formula: 'M₁-M₂+M₃+M₆',  idx: [1,1] },
   ];
 
-  /* ── step generation ─────────────────────────────────────────── */
+
   function generateSteps(ignored) {
     const A = randMat();
     const B = randMat();
@@ -78,7 +61,7 @@ window.AlgoStrassen = (() => {
     push('Divide: partition each 2×2 matrix into scalar elements: a, b, c, d and e, f, g, h.', 'divide',
          { highlightAll: true });
 
-    // Compute each Mᵢ
+
     const Mvals = [
       (a+d)*(e+h),
       (c+d)*e,
@@ -103,7 +86,7 @@ window.AlgoStrassen = (() => {
       );
     }
 
-    // Reconstruct C
+
     const C = [[0,0],[0,0]];
     for (const cd of C_DEFS) {
       const [ri, ci] = cd.idx;
@@ -126,7 +109,7 @@ window.AlgoStrassen = (() => {
     return steps;
   }
 
-  /* ── render ───────────────────────────────────────────────────── */
+
   const MC = ['#4f8ef7','#50fa7b','#ffb86c','#bd93f9','#ff79c6','#8be9fd','#f1fa8c'];
 
   function drawMat2x2(ctx, mat, xo, yo, cs, title, fill) {
@@ -162,7 +145,7 @@ window.AlgoStrassen = (() => {
     const topY   = 36;
     const midY   = topY + matW + 44;
 
-    /* ── Row 1: A, ×, B, =, C (if available) ── */
+
     const row1Items = [
       { mat: A,    title: 'A',          x: PAD },
       { mat: B,    title: 'B',          x: PAD + matW + 36 },
@@ -184,7 +167,7 @@ window.AlgoStrassen = (() => {
       });
     }
 
-    /* Highlight current C cell */
+
     if (currentC && C) {
       const cxo = PAD + (matW + 36) * 2;
       const [r, c] = currentC;
@@ -196,7 +179,7 @@ window.AlgoStrassen = (() => {
       });
     }
 
-    /* Element labels (a,b,c,d | e,f,g,h) */
+
     const aLabels = [['a','b'],['c','d']];
     const bLabels = [['e','f'],['g','h']];
     [[aLabels, PAD], [bLabels, PAD + matW + 36]].forEach(([labels, xo]) => {
@@ -211,7 +194,7 @@ window.AlgoStrassen = (() => {
       }
     });
 
-    /* ── Row 2: M1…M7 boxes ── */
+
     const boxW   = Math.min(cs * 2, Math.floor((W - PAD * 2 - 6 * 8) / 7));
     const boxH   = Math.max(28, Math.min(cs * 2, H - midY - 20));
     const totalMW = boxW * 7 + 8 * 6;
@@ -250,7 +233,7 @@ window.AlgoStrassen = (() => {
       }
     }
 
-    /* complexity reminder */
+
     CU.text(ctx,
       'Strassen: 7 multiplications  vs  8 in standard D&C  →  T(n) = 7T(n/2) + n²  →  O(n^2.807)',
       W / 2, H - 8, {
@@ -259,7 +242,7 @@ window.AlgoStrassen = (() => {
     );
   }
 
-  /* ── getInfo ──────────────────────────────────────────────────── */
+
   function getInfo() {
     return {
       name: "Strassen's Algorithm",

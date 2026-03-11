@@ -1,21 +1,10 @@
-/**
- * visualization/animation.js
- *
- * Step-based animation controller.
- * Exposed as the global `Animator` object.
- *
- * Usage:
- *   Animator.init(canvasElement)
- *   Animator.load(steps, renderFn)   – renderFn(canvas, ctx, step)
- *   Animator.play() / .pause() / .reset() / .stepForward()
- *   Animator.speed  (1–10, default 5)
- */
+
 
 'use strict';
 
 const Animator = (() => {
 
-  /* ── private state ─────────────────────────────────────────────── */
+
   let _canvas      = null;
   let _ctx         = null;
   let _steps       = [];
@@ -23,13 +12,13 @@ const Animator = (() => {
   let _current     = 0;
   let _playing     = false;
   let _timer       = null;
-  let _speed       = 5;        // 1-10
+  let _speed       = 5;
   let _resizeOb    = null;
 
-  /* ── helpers ───────────────────────────────────────────────────── */
+
   function _delay() {
-    // speed 1 → 1800 ms, speed 5 → 500 ms, speed 10 → 80 ms
-    return Math.round(80 + (10 - _speed) * 190);
+
+    return Math.round(80 + (5 - _speed) * 430);
   }
 
   function _syncSize() {
@@ -50,7 +39,7 @@ const Animator = (() => {
     _renderFn(_canvas, _ctx, _steps[_current]);
   }
 
-  /* ── UI update ─────────────────────────────────────────────────── */
+
   function _updateUI() {
     const step   = _steps[_current];
     const total  = _steps.length;
@@ -76,7 +65,7 @@ const Animator = (() => {
     if (elPause) elPause.disabled = !_playing;
   }
 
-  /* ── schedule next step ────────────────────────────────────────── */
+
   function _schedule() {
     if (!_playing) return;
     _timer = setTimeout(() => {
@@ -94,11 +83,11 @@ const Animator = (() => {
     }, _delay());
   }
 
-  /* ── public API ────────────────────────────────────────────────── */
+
   return {
 
     get speed()       { return _speed; },
-    set speed(v)      { _speed = Math.max(1, Math.min(10, v)); },
+    set speed(v)      { _speed = Math.max(1, Math.min(5, v)); },
     get currentStep() { return _current; },
     get totalSteps()  { return _steps.length; },
 
@@ -106,7 +95,7 @@ const Animator = (() => {
       _canvas = canvas;
       _ctx    = canvas.getContext('2d');
 
-      // Keep canvas pixel size in sync with CSS layout size
+
       if (typeof ResizeObserver !== 'undefined') {
         _resizeOb = new ResizeObserver(_syncSize);
         _resizeOb.observe(_canvas);

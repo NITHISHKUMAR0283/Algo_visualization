@@ -8,7 +8,7 @@
 </head>
 <body>
 
-  <!-- ── TOP HEADER ── -->
+
   <header class="header">
     <div class="header-brand">
       <span class="brand-icon">NV</span>
@@ -25,17 +25,17 @@
       <button id="btn-reset"  class="btn btn-danger">↺ Reset</button>
       <div class="speed-wrap">
         <label for="speed-slider">Speed</label>
-        <input type="range" id="speed-slider" min="1" max="10" value="5" />
+        <input type="range" id="speed-slider" min="1" max="5" value="5" />
         <span id="speed-label">5×</span>
       </div>
       <button id="btn-random" class="btn btn-info">🎲 Random</button>
     </div>
   </header>
 
-  <!-- ── THREE-COLUMN LAYOUT ── -->
+
   <div class="app-layout">
 
-    <!-- LEFT SIDEBAR: algorithm list -->
+
     <aside class="sidebar">
       <p class="sidebar-heading">Algorithms</p>
       <ul class="algo-list" id="algo-list">
@@ -91,7 +91,7 @@
       </ul>
     </aside>
 
-    <!-- CENTER: visualization + input -->
+
     <main class="center">
       <div class="viz-box">
         <div class="viz-header">
@@ -118,7 +118,7 @@
       </div>
     </main>
 
-    <!-- RIGHT PANEL: info & complexity -->
+
     <aside class="info-panel">
 
       <section class="info-section">
@@ -157,7 +157,7 @@
     </aside>
   </div>
 
-  <!-- ── SCRIPTS (order matters) ── -->
+
   <script src="visualization/canvasUtils.js"></script>
   <script src="visualization/animation.js"></script>
   <script src="algorithms/mergesort.js"></script>
