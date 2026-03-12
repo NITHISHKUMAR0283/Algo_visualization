@@ -6,18 +6,18 @@ window.AlgoMergeSort = (() => {
 
 
   const C = {
-    bar:      '#4a5568',
-    left:     '#8be9fd',
-    right:    '#bd93f9',
-    compare:  '#ffb86c',
-    placing:  '#ff79c6',
-    sorted:   '#50fa7b',
-    pivot:    '#ff5555',
-    muted:    '#6272a4',
-    text:     '#f8f8f2',
-    bg:       '#1a1d27',
-    bg2:      '#242736',
-    divLine:  '#ff79c6',
+    bar:      '#9ca3af',
+    left:     '#0d9488',
+    right:    '#7c3aed',
+    compare:  '#f97316',
+    placing:  '#ec4899',
+    sorted:   '#10b981',
+    pivot:    '#dc2626',
+    muted:    '#6b7280',
+    text:     '#1a1a1a',
+    bg:       '#f8f9fa',
+    bg2:      '#f0f1f5',
+    divLine:  '#ec4899',
   };
 
 
@@ -243,7 +243,7 @@ window.AlgoMergeSort = (() => {
         'After k levels: T(n) = 2ᵏT(n/2ᵏ) + k·n',
         'Base: n/2ᵏ = 1  ⟹  k = log₂n',
         'T(n) = n·T(1) + n·log₂n',
-        '     = n + n·log n',
+        '= n + n·log n',
       ],
       finalComplexity: 'Θ(n log n)',
       complexityNote:

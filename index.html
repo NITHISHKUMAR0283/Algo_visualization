@@ -21,6 +21,7 @@
     <div class="controls">
       <button id="btn-start"  class="btn btn-primary">▶ Start</button>
       <button id="btn-pause"  class="btn btn-secondary" disabled>⏸ Pause</button>
+      <button id="btn-prev"   class="btn btn-secondary" disabled>⏮ Prev</button>
       <button id="btn-step"   class="btn btn-secondary">⏭ Step</button>
       <button id="btn-reset"  class="btn btn-danger">↺ Reset</button>
       <div class="speed-wrap">
@@ -121,31 +122,29 @@
 
     <aside class="info-panel">
 
-      <section class="info-section">
+      <section class="info-section info-highlight-block">
         <h3 id="info-name">Merge Sort</h3>
         <p  id="info-desc"></p>
       </section>
 
-      <section class="info-section">
+      <section class="info-section info-highlight-block">
         <h4 class="phase-label divide-label">📐 Divide</h4>
         <p id="info-divide"></p>
       </section>
 
-      <section class="info-section">
+      <section class="info-section info-highlight-block">
         <h4 class="phase-label conquer-label">⚙️ Conquer</h4>
         <p id="info-conquer"></p>
       </section>
 
-      <section class="info-section">
+      <section class="info-section info-highlight-block">
         <h4 class="phase-label combine-label">🔗 Combine</h4>
         <p id="info-combine"></p>
       </section>
 
       <section class="info-section complexity-block">
         <h4>📊 Time Complexity</h4>
-        <div class="recurrence-box">
-          <span id="info-recurrence"></span>
-        </div>
+        <div class="recurrence-box"><span id="info-recurrence"></span></div>
         <div id="info-complexity-steps" class="complexity-steps"></div>
         <div class="final-box">
           <strong>Result: </strong>

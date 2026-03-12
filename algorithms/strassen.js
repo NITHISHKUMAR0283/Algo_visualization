@@ -110,32 +110,32 @@ window.AlgoStrassen = (() => {
   }
 
 
-  const MC = ['#4f8ef7','#50fa7b','#ffb86c','#bd93f9','#ff79c6','#8be9fd','#f1fa8c'];
+  const MC = ['#2563eb','#10b981','#f97316','#7c3aed','#ec4899','#0d9488','#eab308'];
 
   function drawMat2x2(ctx, mat, xo, yo, cs, title, fill) {
     if (title) {
       CU.text(ctx, title, xo + cs, yo - 10, {
-        font: 'bold 12px sans-serif', color: '#8be9fd', align: 'center',
+        font: 'bold 12px sans-serif', color: '#0d9488', align: 'center',
       });
     }
     for (let r = 0; r < 2; r++) {
       for (let c = 0; c < 2; c++) {
         const x = xo + c * cs;
         const y = yo + r * cs;
-        CU.rect(ctx, x+1, y+1, cs-2, cs-2, fill || '#242736', '#44475a', 1);
+        CU.rect(ctx, x+1, y+1, cs-2, cs-2, fill || '#f0f1f5', '#d1d5db', 1);
         if (mat && mat[r] && mat[r][c] !== undefined) {
           CU.text(ctx, mat[r][c], x + cs/2, y + cs/2, {
-            font: `bold ${Math.max(9,cs*0.38)}px monospace`, color: '#f8f8f2',
+            font: `bold ${Math.max(9,cs*0.38)}px monospace`, color: '#1a1a1a',
           });
         }
       }
     }
-    CU.strokeRect(ctx, xo, yo, cs*2, cs*2, '#6272a4', 1);
+    CU.strokeRect(ctx, xo, yo, cs*2, cs*2, '#d1d5db', 1);
   }
 
   function render(canvas, ctx, step) {
     const W = canvas.width, H = canvas.height;
-    CU.clear(ctx, canvas, '#1a1d27');
+    CU.clear(ctx, canvas, '#f8f9fa');
 
     const { A, B, Ms, C, currentM, currentC, doneMs, highlightAll } = step;
 
@@ -155,15 +155,15 @@ window.AlgoStrassen = (() => {
     }
 
     row1Items.forEach(({ mat, title, x }) => {
-      drawMat2x2(ctx, mat, x, topY, cs, title, '#242736');
+      drawMat2x2(ctx, mat, x, topY, cs, title, '#f0f1f5');
     });
 
     CU.text(ctx, '×', PAD + matW + 18, topY + matW / 2, {
-      font: 'bold 22px sans-serif', color: '#6272a4',
+      font: 'bold 22px sans-serif', color: '#6b7280',
     });
     if (C) {
       CU.text(ctx, '=', PAD + (matW + 36) * 2 - 18, topY + matW / 2, {
-        font: 'bold 22px sans-serif', color: '#6272a4',
+        font: 'bold 22px sans-serif', color: '#6b7280',
       });
     }
 
@@ -173,9 +173,9 @@ window.AlgoStrassen = (() => {
       const [r, c] = currentC;
       const hx = cxo + c * cs;
       const hy = topY + r * cs;
-      CU.rect(ctx, hx+1, hy+1, cs-2, cs-2, '#50fa7b44', '#50fa7b', 2);
+      CU.rect(ctx, hx+1, hy+1, cs-2, cs-2, '#10b98144', '#10b981', 2);
       CU.text(ctx, C[r][c], hx + cs/2, hy + cs/2, {
-        font: `bold ${Math.max(9,cs*0.38)}px monospace`, color: '#50fa7b',
+        font: `bold ${Math.max(9,cs*0.38)}px monospace`, color: '#10b981',
       });
     }
 
@@ -188,7 +188,7 @@ window.AlgoStrassen = (() => {
           const x = xo + c * cs;
           const y = topY + r * cs;
           CU.text(ctx, labels[r][c], x + cs - 4, y + 10, {
-            font: '8px monospace', color: '#6272a4', align: 'right',
+            font: '8px monospace', color: '#6b7280', align: 'right',
           });
         }
       }
@@ -201,7 +201,7 @@ window.AlgoStrassen = (() => {
     const mStartX = (W - totalMW) / 2;
 
     CU.text(ctx, '7 Strassen Products  M₁…M₇', W / 2, midY - 12, {
-      font: 'bold 11px sans-serif', color: '#f1fa8c', align: 'center',
+      font: 'bold 11px sans-serif', color: '#f97316', align: 'center',
     });
 
     for (let i = 0; i < 7; i++) {

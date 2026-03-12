@@ -5,15 +5,15 @@
 window.AlgoQuickSort = (() => {
 
   const C = {
-    bar:     '#4a5568',
-    pivot:   '#ff5555',
-    small:   '#8be9fd',
-    large:   '#bd93f9',
-    swap:    '#ffb86c',
-    sorted:  '#50fa7b',
-    muted:   '#6272a4',
-    text:    '#f8f8f2',
-    bg:      '#1a1d27',
+    bar:     '#9ca3af',
+    pivot:   '#dc2626',
+    small:   '#0d9488',
+    large:   '#7c3aed',
+    swap:    '#f97316',
+    sorted:  '#10b981',
+    muted:   '#6b7280',
+    text:    '#1a1a1a',
+    bg:      '#f8f9fa',
   };
 
 
@@ -215,11 +215,11 @@ window.AlgoQuickSort = (() => {
       recurrence: 'T(n) = T(k) + T(n-k-1) + n  (k = partition size)',
       complexitySteps: [
         'Best/Average (balanced split, k ≈ n/2):',
-        '  T(n) = 2T(n/2) + n  →  Θ(n log n)',
+        'T(n) = 2T(n/2) + n  →  Θ(n log n)',
         'Worst (sorted input, k = 0 each time):',
-        '  T(n) = T(0) + T(n-1) + n',
-        '       = T(n-1) + n',
-        '       → Θ(n²)',
+        'T(n) = T(0) + T(n-1) + n',
+        '= T(n-1) + n',
+        '→ Θ(n²)',
       ],
       finalComplexity: 'Avg Θ(n log n)  /  Worst Θ(n²)',
       complexityNote:

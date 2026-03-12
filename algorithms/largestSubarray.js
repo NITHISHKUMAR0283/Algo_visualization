@@ -5,16 +5,16 @@
 window.AlgoLargestSubarray = (() => {
 
   const C = {
-    pos:     '#4f8ef7',
-    neg:     '#4a5568',
-    left:    '#8be9fd',
-    right:   '#bd93f9',
-    cross:   '#ffb86c',
-    best:    '#50fa7b',
-    mid:     '#ff79c6',
-    text:    '#f8f8f2',
-    muted:   '#6272a4',
-    bg:      '#1a1d27',
+    pos:     '#2563eb',
+    neg:     '#9ca3af',
+    left:    '#0d9488',
+    right:   '#7c3aed',
+    cross:   '#f97316',
+    best:    '#10b981',
+    mid:     '#ec4899',
+    text:    '#1a1a1a',
+    muted:   '#6b7280',
+    bg:      '#f8f9fa',
   };
 
 
@@ -215,9 +215,9 @@ window.AlgoLargestSubarray = (() => {
       complexitySteps: [
         'T(n) = 2T(n/2) + n',
         'By Master Theorem / recursion tree:',
-        '  a=2, b=2 → log₂2 = 1',
-        '  f(n) = n = Θ(n^log_b(a))',
-        '  Case 2 of Master Theorem → Θ(n log n)',
+        'a=2, b=2 → log₂2 = 1',
+        'f(n) = n = Θ(n^log_b(a))',
+        'Case 2 of Master Theorem → Θ(n log n)',
       ],
       finalComplexity: 'Θ(n log n)',
       complexityNote:

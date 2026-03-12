@@ -5,16 +5,16 @@
 window.AlgoClosestPair = (() => {
 
   const C = {
-    dot:     '#4f8ef7',
-    left:    '#8be9fd',
-    right:   '#bd93f9',
-    strip:   '#ffb86c',
-    closest: '#50fa7b',
-    divLine: '#ff79c6',
-    bg:      '#1a1d27',
-    grid:    '#242736',
-    text:    '#f8f8f2',
-    muted:   '#6272a4',
+    dot:     '#2563eb',
+    left:    '#0d9488',
+    right:   '#7c3aed',
+    strip:   '#f97316',
+    closest: '#10b981',
+    divLine: '#ec4899',
+    bg:      '#f8f9fa',
+    grid:    '#f0f1f5',
+    text:    '#1a1a1a',
+    muted:   '#6b7280',
   };
 
   const DOT_R = 5;
@@ -245,10 +245,10 @@ window.AlgoClosestPair = (() => {
       recurrence: 'T(n) = 2·T(n/2) + n log n   (strip check)',
       complexitySteps: [
         'T(n) = 2T(n/2) + O(n log n)',
-        '     = O(n log²n)   [unoptimised strip step]',
+        '= O(n log²n)   [unoptimised strip step]',
         'With y-sorted sub-arrays passed down:',
         'T(n) = 2T(n/2) + O(n)',
-        '     = O(n log n)   [Master Theorem case 2]',
+        '= O(n log n)   [Master Theorem case 2]',
       ],
       finalComplexity: 'Θ(n log n)',
       complexityNote:

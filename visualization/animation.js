@@ -49,6 +49,8 @@ const Animator = (() => {
     const elDesc   = document.getElementById('step-desc');
     const elStart  = document.getElementById('btn-start');
     const elPause  = document.getElementById('btn-pause');
+    const elPrev   = document.getElementById('btn-prev');
+    const elStep   = document.getElementById('btn-step');
 
     if (elCount)  elCount.textContent = `Step: ${_current + 1} / ${total}`;
 
@@ -63,6 +65,8 @@ const Animator = (() => {
 
     if (elStart) elStart.disabled = _playing;
     if (elPause) elPause.disabled = !_playing;
+    if (elPrev)  elPrev.disabled  = _playing || total === 0 || _current === 0;
+    if (elStep)  elStep.disabled  = _playing || total === 0 || _current >= total - 1;
   }
 
 

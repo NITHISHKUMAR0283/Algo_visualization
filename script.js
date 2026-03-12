@@ -104,6 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('btn-start').addEventListener('click',  () => Animator.play());
   document.getElementById('btn-pause').addEventListener('click',  () => Animator.pause());
+  document.getElementById('btn-prev') .addEventListener('click',  () => Animator.stepBackward());
   document.getElementById('btn-step') .addEventListener('click',  () => Animator.stepForward());
   document.getElementById('btn-reset').addEventListener('click',  () => {
     Animator.reset();

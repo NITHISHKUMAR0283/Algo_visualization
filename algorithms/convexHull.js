@@ -5,16 +5,16 @@
 window.AlgoConvexHull = (() => {
 
   const C = {
-    dot:       '#4f8ef7',
-    left:      '#8be9fd',
-    right:     '#bd93f9',
-    hull:      '#50fa7b',
-    tangent:   '#ffb86c',
-    removed:   '#ff5555',
-    bg:        '#1a1d27',
-    grid:      '#242736',
-    muted:     '#6272a4',
-    text:      '#f8f8f2',
+    dot:       '#2563eb',
+    left:      '#0d9488',
+    right:     '#7c3aed',
+    hull:      '#10b981',
+    tangent:   '#f97316',
+    removed:   '#dc2626',
+    bg:        '#f8f9fa',
+    grid:      '#f0f1f5',
+    muted:     '#6b7280',
+    text:      '#1a1a1a',
   };
   const DOT_R = 5;
 
@@ -231,7 +231,7 @@ window.AlgoConvexHull = (() => {
       complexitySteps: [
         'Sort: O(n log n)',
         'D&C merge: T(n) = 2T(n/2) + O(n)',
-        '          = O(n log n)  [Master Theorem case 2]',
+        '= O(n log n)  [Master Theorem case 2]',
         'Overall: O(n log n) dominated by sorting',
       ],
       finalComplexity: 'Θ(n log n)',

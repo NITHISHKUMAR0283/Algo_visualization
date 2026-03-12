@@ -5,14 +5,14 @@
 window.AlgoMinMax = (() => {
 
   const C = {
-    bar:     '#4a5568',
-    active:  '#4f8ef7',
-    min:     '#ff5555',
-    max:     '#50fa7b',
-    compare: '#ffb86c',
-    muted:   '#6272a4',
-    text:    '#f8f8f2',
-    bg:      '#1a1d27',
+    bar:     '#9ca3af',
+    active:  '#2563eb',
+    min:     '#dc2626',
+    max:     '#10b981',
+    compare: '#f97316',
+    muted:   '#6b7280',
+    text:    '#1a1a1a',
+    bg:      '#f8f9fa',
   };
 
 

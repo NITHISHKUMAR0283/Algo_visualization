@@ -5,7 +5,7 @@
 window.AlgoMatrixMultiply = (() => {
 
 
-  const QCOL = ['#4f8ef7','#50fa7b','#ffb86c','#bd93f9'];
+  const QCOL = ['#2563eb','#10b981','#f97316','#7c3aed'];
   const QNAME = ['11','12','21','22'];
 
 
@@ -158,7 +158,7 @@ window.AlgoMatrixMultiply = (() => {
 
   function render(canvas, ctx, step) {
     const W = canvas.width, H = canvas.height;
-    CU.clear(ctx, canvas, '#1a1d27');
+    CU.clear(ctx, canvas, '#f8f9fa');
 
     const { A, B, C, N } = step;
     if (!A || !B || !C) return;
@@ -292,9 +292,9 @@ window.AlgoMatrixMultiply = (() => {
       complexitySteps: [
         'T(n) = 8T(n/2) + n²',
         'By Master Theorem (case 1):',
-        '  a = 8, b = 2  →  log₂8 = 3',
-        '  f(n) = n² = O(n^(log_b a - ε))',
-        "  ε = 1 > 0  →  apply Master Theorem case 1",
+        'a = 8, b = 2  →  log₂8 = 3',
+        'f(n) = n² = O(n^(log_b a - ε))',
+        'ε = 1 > 0  →  apply Master Theorem case 1',
       ],
       finalComplexity: 'Θ(n³)',
       complexityNote:
