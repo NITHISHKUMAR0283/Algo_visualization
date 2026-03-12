@@ -18,7 +18,7 @@ const Animator = (() => {
 
   function _delay() {
 
-    return Math.round(80 + (5 - _speed) * 430);
+    return Math.round(140 + (5 - _speed) * 500);
   }
 
   function _syncSize() {

@@ -121,6 +121,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const speedSlider = document.getElementById('speed-slider');
   const speedLabel  = document.getElementById('speed-label');
+  Animator.speed = parseInt(speedSlider.value, 10);
+  speedLabel.textContent = speedSlider.value + '×';
   speedSlider.addEventListener('input', () => {
     Animator.speed = parseInt(speedSlider.value, 10);
     speedLabel.textContent = speedSlider.value + '×';
