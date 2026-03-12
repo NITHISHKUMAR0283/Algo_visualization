@@ -6,7 +6,7 @@ An interactive educational web application that teaches **Divide and Conquer alg
 
 **[ Click here to view the live application](https://nithishkumar0283.github.io/Algo_visualization/)**
 
-Or open `index.html` directly in any modern browser — no server, build tools, or dependencies required.
+Or open `index.html` directly in any modern browser, no server, build tools, or dependencies required.
 
 ---
 
@@ -57,7 +57,7 @@ project/
 
 1. Clone or download the project folder.
 2. Open `index.html` in a modern browser (Chrome, Firefox, Edge, Safari).
-3. No internet connection required — zero external dependencies.
+3. No internet connection required, zero external dependencies.
 
 ---
 
@@ -116,7 +116,7 @@ Each step is a plain object containing all data needed to draw that frame:
 - `Animator.load(steps, renderFn)` registers steps and the render function.
 - `Animator.play()` advances one step per `delay` ms, where `delay` is controlled by the speed slider (80 ms – 1800 ms).
 - A `ResizeObserver` keeps the canvas pixel dimensions in sync with CSS layout.
-- All drawing uses the native **Canvas 2D API** — no external libraries.
+- All drawing uses the native **Canvas 2D API**, no external libraries.
 
 ---
 
