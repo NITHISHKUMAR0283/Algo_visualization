@@ -6,7 +6,7 @@
 const CU = {
 
 
-  clear(ctx, canvas, bgColor = '#1a1d27') {
+  clear(ctx, canvas, bgColor = '#f8f9fa') {
     ctx.fillStyle = bgColor;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
   },
@@ -31,7 +31,7 @@ const CU = {
 
   text(ctx, str, x, y, {
     font      = '12px monospace',
-    color     = '#f8f8f2',
+    color     = '#1a1a1a',
     align     = 'center',
     baseline  = 'middle',
     maxWidth,
@@ -45,7 +45,7 @@ const CU = {
   },
 
 
-  line(ctx, x1, y1, x2, y2, color = '#6272a4', lw = 1, dash = []) {
+  line(ctx, x1, y1, x2, y2, color = '#9ca3af', lw = 1, dash = []) {
     ctx.strokeStyle = color;
     ctx.lineWidth   = lw;
     ctx.setLineDash(dash);
@@ -69,7 +69,7 @@ const CU = {
   },
 
 
-  arrow(ctx, x1, y1, x2, y2, color = '#4f8ef7', lw = 2) {
+  arrow(ctx, x1, y1, x2, y2, color = '#2563eb', lw = 2) {
     const angle   = Math.atan2(y2 - y1, x2 - x1);
     const headLen = 9;
     ctx.strokeStyle = color;
@@ -102,7 +102,7 @@ const CU = {
     if (stroke) { ctx.strokeStyle = stroke; ctx.lineWidth = lw; ctx.stroke(); }
   },
 
-  polyline(ctx, pts, color = '#4f8ef7', lw = 2) {
+  polyline(ctx, pts, color = '#2563eb', lw = 2) {
     if (!pts || pts.length < 2) return;
     ctx.strokeStyle = color;
     ctx.lineWidth   = lw;
@@ -136,7 +136,7 @@ const CU = {
       const lx = x + i * spacing;
       this.fillRect(ctx, lx, y, sw, sh, item.color);
       this.text(ctx, item.label, lx + sw + gap, y + sh / 2, {
-        font: '10px sans-serif', color: '#6272a4', align: 'left', baseline: 'middle',
+        font: '10px sans-serif', color: '#6b7280', align: 'left', baseline: 'middle',
       });
     });
   },
