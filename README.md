@@ -122,29 +122,16 @@ Each step is a plain object containing all data needed to draw that frame:
 
 ## Time Complexity Derivations
 
-### Merge Sort — T(n) = 2T(n/2) + n → **Θ(n log n)**
-Each level of recursion does O(n) work (merge step); there are log₂n levels.
-
-### Quick Sort — T(n) = T(k)+T(n-k-1)+n → **Avg Θ(n log n), Worst Θ(n²)**
-With a balanced pivot the recurrence matches merge sort; sorted input causes O(n²).
-
-### Matrix Multiply (D&C) — T(n) = 8T(n/2) + n² → **Θ(n³)**
-8 sub-problems of size n/2; Master Theorem case 1 (log₂8 = 3 > 2).
-
-### Strassen's — T(n) = 7T(n/2) + n² → **Θ(n^log₂7 ≈ n^2.807)**
-Reducing 8 multiplications to 7 lowers the exponent via Master Theorem case 1.
-
-### Min & Max — 3n/2 comparisons → **Θ(n)**
-Pairs of elements are compared at each leaf; the total is exactly ⌈3n/2⌉ − 2.
-
-### Largest Subarray Sum — T(n) = 2T(n/2) + n → **Θ(n log n)**
-Master Theorem case 2 (a=2, b=2, f(n)=n = Θ(n^log₂2 · log⁰n)).
-
-### Closest Pair — T(n) = 2T(n/2) + O(n) → **Θ(n log n)**
-Strip check is O(n) because each point has at most 7 candidates (packing argument).
-
-### Convex Hull — Sort + T(n) = 2T(n/2)+O(n) → **Θ(n log n)**
-Dominated by the initial sort; the hull merge is linear per level.
+| Algorithm | Recurrence / Cost | Final Complexity | Why |
+|-----------|-------------------|------------------|-----|
+| Merge Sort | `T(n) = 2T(n/2) + n` | **Θ(n log n)** | Each recursion level does `O(n)` merge work across `log₂n` levels. |
+| Quick Sort | `T(n) = T(k) + T(n-k-1) + n` | **Avg Θ(n log n), Worst Θ(n²)** | Balanced partitions behave like merge sort; highly unbalanced partitions degrade to quadratic time. |
+| Matrix Multiply (D&C) | `T(n) = 8T(n/2) + n²` | **Θ(n³)** | There are 8 subproblems of size `n/2`; Master Theorem gives exponent `log₂8 = 3`. |
+| Strassen's | `T(n) = 7T(n/2) + n²` | **Θ(n^log₂7 ≈ n^2.807)** | Reducing 8 recursive multiplications to 7 lowers the exponent. |
+| Min & Max | `3n/2` comparisons | **Θ(n)** | Pairwise comparison reduces total comparisons to `⌈3n/2⌉ − 2`. |
+| Largest Subarray Sum | `T(n) = 2T(n/2) + n` | **Θ(n log n)** | The crossing-sum step is linear at each level; Master Theorem case 2 applies. |
+| Closest Pair | `T(n) = 2T(n/2) + O(n)` | **Θ(n log n)** | The strip scan stays linear because each point checks only a constant number of neighbors. |
+| Convex Hull | `Sort + T(n) = 2T(n/2) + O(n)` | **Θ(n log n)** | The initial sort dominates; hull merging is linear per level. |
 
 ---
 
