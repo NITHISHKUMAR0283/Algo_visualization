@@ -148,29 +148,12 @@ Dominated by the initial sort; the hull merge is linear per level.
 
 ## Demo Videos
 
-### Merge Sort
-<video width="600" controls>
-  <source src="screenshots/mergesort.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
-### Quick Sort
-<video width="600" controls>
-  <source src="screenshots/qucik_sort.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
-### Closest Pair of Points
-<video width="600" controls>
-  <source src="screenshots/closestpair.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
-
-### Convex Hull
-<video width="600" controls>
-  <source src="screenshots/convexhull.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+| Algorithm | Video Demo |
+|-----------|-----------|
+| Merge Sort | [Watch Video](https://github.com/NITHISHKUMAR0283/Algo_visualization/raw/main/screenshots/mergesort.mp4) |
+| Quick Sort | [Watch Video](https://github.com/NITHISHKUMAR0283/Algo_visualization/raw/main/screenshots/qucik_sort.mp4) |
+| Closest Pair of Points | [Watch Video](https://github.com/NITHISHKUMAR0283/Algo_visualization/raw/main/screenshots/closestpair.mp4) |
+| Convex Hull | [Watch Video](https://github.com/NITHISHKUMAR0283/Algo_visualization/raw/main/screenshots/convexhull.mp4) |
 
 ---
 
