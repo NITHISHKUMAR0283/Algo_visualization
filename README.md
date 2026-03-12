@@ -146,16 +146,31 @@ Dominated by the initial sort; the hull merge is linear per level.
 
 ---
 
-## Screenshots
+## Demo Videos
 
-*(Replace placeholders with actual screenshots after running the app.)*
+### Merge Sort
+<video width="600" controls>
+  <source src="screenshots/mergesort.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
-| Algorithm | Screenshot |
-|-----------|------------|
-| Merge Sort | ![Merge Sort](screenshots/mergesort.png) |
-| Quick Sort | ![Quick Sort](screenshots/quicksort.png) |
-| Closest Pair | ![Closest Pair](screenshots/closestpair.png) |
-| Convex Hull | ![Convex Hull](screenshots/convexhull.png) |
+### Quick Sort
+<video width="600" controls>
+  <source src="screenshots/qucik_sort.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+### Closest Pair of Points
+<video width="600" controls>
+  <source src="screenshots/closestpair.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+### Convex Hull
+<video width="600" controls>
+  <source src="screenshots/convexhull.mp4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
 
 ---
 
@@ -174,13 +189,9 @@ Dominated by the initial sort; the hull merge is linear per level.
 
 | Browser | Status |
 |---------|--------|
-| Chrome 90+ | ✅ Full support |
-| Firefox 88+ | ✅ Full support |
-| Edge 90+ | ✅ Full support |
-| Safari 14+ | ✅ Full support |
+| Chrome 90+ |  Full support |
+| Firefox 88+ |  Full support |
+| Edge 90+ |  Full support |
+| Safari 14+ |  Full support |
 
 ---
-
-## License
-
-MIT — free to use for educational and academic purposes.
