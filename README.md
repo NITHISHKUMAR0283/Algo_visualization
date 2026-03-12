@@ -1,10 +1,12 @@
-# Divide & Conquer Visualizer
+# Nithish Visualizer
 
 An interactive educational web application that teaches **Divide and Conquer algorithms** through animated, step-by-step visualizations with time complexity analysis.
 
-## Live Demo
+## 🚀 Live Demo
 
-Open `index.html` directly in any modern browser — no server, build tools, or dependencies required.
+**[👉 Click here to view the live application](https://nithishkumar0283.github.io/Algo_visualization/)**
+
+Or open `index.html` directly in any modern browser — no server, build tools, or dependencies required.
 
 ---
 
